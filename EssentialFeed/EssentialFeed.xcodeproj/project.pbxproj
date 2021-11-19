@@ -57,6 +57,7 @@
 		C8C43EA027414DCF0090EAE2 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		C8C43EA32742D3260090EAE2 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		C8C43EA52742E5B30090EAE2 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		C8CB1B152748430E00206873 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		C89AD32B273C75260052C4F5 = {
 			isa = PBXGroup;
 			children = (
+				C8CB1B152748430E00206873 /* README.md */,
 				C89AD337273C75260052C4F5 /* EssentialFeed */,
 				C89AD343273C75270052C4F5 /* EssentialFeedTests */,
 				C86213202744776800934273 /* EssentialFeedEndToEndTests */,
