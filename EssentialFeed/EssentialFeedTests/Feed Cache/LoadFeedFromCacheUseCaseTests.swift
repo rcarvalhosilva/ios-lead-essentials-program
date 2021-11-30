@@ -49,8 +49,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
 
     func test_load_deliversNoImagesOnEmptyCache() {
         let (store, sut) = makeSUT()
-        let retrievalError = anyNSError()
-
+        
         let exp = expectation(description: "Wait for load completion")
 
         var receivedImages: [FeedImage]?
