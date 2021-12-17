@@ -3,8 +3,30 @@ import EssentialFeed
 
 class CodableFeedStore {
     private struct Cache: Codable {
-        let feed: [LocalFeedImage]
+        let feed: [CodableFeedImage]
         let timestamp: Date
+
+        var localFeed: [LocalFeedImage] {
+            feed.map { $0.local }
+        }
+    }
+
+    private struct CodableFeedImage: Codable {
+        let id: UUID
+        let description: String?
+        let location: String?
+        let url: URL
+
+        var local: LocalFeedImage {
+            LocalFeedImage(id: id, description: description, location: location, url: url)
+        }
+
+        init(localFeedImage: LocalFeedImage) {
+            self.id = localFeedImage.id
+            self.description = localFeedImage.description
+            self.location = localFeedImage.location
+            self.url = localFeedImage.url
+        }
     }
 
     private let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("image-feed.store")
@@ -16,12 +38,12 @@ class CodableFeedStore {
 
         let decoder = JSONDecoder()
         let cache = try! decoder.decode(Cache.self, from: data)
-        completion(.found(feed: cache.feed, timestamp: cache.timestamp))
+        completion(.found(feed: cache.localFeed, timestamp: cache.timestamp))
     }
 
     func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping FeedStore.InsertionCompletion) {
         let enconder = JSONEncoder()
-        let enconded = try! enconder.encode(Cache(feed: feed, timestamp: timestamp))
+        let enconded = try! enconder.encode(Cache(feed: feed.map(CodableFeedImage.init), timestamp: timestamp))
         try! enconded.write(to: storeURL)
         completion(nil)
     }
