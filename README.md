@@ -194,9 +194,9 @@ GET *url* (TBD)
     ✅ To non-empty cache overrides previous data with new data
     ✅ Error (if applicable, e.g., no write permission)
 
-- Delete
+✅ Delete
     ✅ Empty cache does nothing (cache stays empty and does not fail)
-    - Non-empty cache leaves cache empty
-    - Error (if applicable, e.g., no delete permission)
+    ✅ Non-empty cache leaves cache empty
+    ✅ Error (if applicable, e.g., no delete permission)
 
 - Side-effects must run serially to avoid race-conditions
