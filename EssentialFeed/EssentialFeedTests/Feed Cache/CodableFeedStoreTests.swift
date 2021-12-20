@@ -2,7 +2,6 @@ import XCTest
 import EssentialFeed
 
 class CodableFeedStoreTests: XCTestCase {
-
     override func setUp() {
         super.setUp()
         setupEmptyStoreState()
@@ -106,7 +105,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
 
     func test_delete_deliversErrorOnDeletionFailure() {
-        let noDeletePermissionURL = cachesDirectory()
+        let noDeletePermissionURL = noPermissionDirectory()
         let sut = makeSUT(storeURL: noDeletePermissionURL)
 
         let deletionError = deleteCache(from: sut)
@@ -223,5 +222,9 @@ class CodableFeedStoreTests: XCTestCase {
 
     private func cachesDirectory() -> URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    }
+
+    private func noPermissionDirectory() -> URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
     }
 }
