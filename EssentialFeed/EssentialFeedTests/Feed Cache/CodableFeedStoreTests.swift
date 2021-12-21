@@ -1,7 +1,7 @@
 import XCTest
 import EssentialFeed
 
-class CodableFeedStoreTests: XCTestCase {
+class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     override func setUp() {
         super.setUp()
         setupEmptyStoreState()
@@ -150,7 +150,7 @@ class CodableFeedStoreTests: XCTestCase {
         XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
     }
 
-    func test_delete_hasNpSideEffectsOnDeletionError() {
+    func test_delete_hasNoSideEffectsOnDeletionError() {
         let noDeletePermissionURL = noPermissionDirectory()
         let sut = makeSUT(storeURL: noDeletePermissionURL)
 
@@ -197,7 +197,7 @@ class CodableFeedStoreTests: XCTestCase {
         trackForMemoryLeaks(feedStore, file: file, line: line)
         return feedStore
     }
-    
+
     @discardableResult
     private func deleteCache(from sut: FeedStore) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
