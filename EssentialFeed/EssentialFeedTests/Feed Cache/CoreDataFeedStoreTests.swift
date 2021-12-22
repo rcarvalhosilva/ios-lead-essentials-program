@@ -1,6 +1,21 @@
 import XCTest
 import EssentialFeed
 
+import CoreData
+
+class ManagedCache: NSManagedObject {
+    @NSManaged var timestamp: Date
+    @NSManaged var feed: NSOrderedSet
+}
+
+class ManagedFeedImage: NSManagedObject {
+    @NSManaged var id: UUID
+    @NSManaged var imageDescription: String?
+    @NSManaged var location: String?
+    @NSManaged var url: String?
+    @NSManaged var cache: ManagedCache
+}
+
 class CoreDataFeedStore: FeedStore {
     func deleteCachedFeed(completion: @escaping DeletionCompletion) {
     }
@@ -28,7 +43,9 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     }
 
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
+//        let sut = makeSUT()
 
+//        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
     }
 
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
