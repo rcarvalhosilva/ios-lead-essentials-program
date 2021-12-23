@@ -17,6 +17,12 @@ class ManagedFeedImage: NSManagedObject {
 }
 
 class CoreDataFeedStore: FeedStore {
+    private let container: NSPersistentContainer
+
+    init() throws {
+        self.container = try NSPersistentContainer.load(modelName: "FeedStore", bundle: Bundle(for: Self.self))
+    }
+
     func deleteCachedFeed(completion: @escaping DeletionCompletion) {
     }
 
@@ -26,6 +32,34 @@ class CoreDataFeedStore: FeedStore {
 
     func retrieve(completion: @escaping RetrievalCompletion) {
         completion(.empty)
+    }
+}
+
+extension NSPersistentContainer {
+    enum LoadingError: Swift.Error {
+        case modelNotFound
+        case failedToLoadPersistentStores(Error)
+    }
+
+    static func load(modelName: String, bundle: Bundle) throws -> NSPersistentContainer {
+        guard let model = NSManagedObjectModel.with(name: modelName, bundle: bundle) else {
+            throw LoadingError.modelNotFound
+        }
+
+        let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        var loadError: Error?
+        container.loadPersistentStores { loadError = $1 }
+        try loadError.map { throw LoadingError.failedToLoadPersistentStores($0) }
+
+        return container
+    }
+}
+
+extension NSManagedObjectModel {
+    static func with(name: String, bundle: Bundle) -> NSManagedObjectModel? {
+        bundle
+            .url(forResource: name, withExtension: "momd")
+            .flatMap({ NSManagedObjectModel(contentsOf: $0) })
     }
 }
 
@@ -87,7 +121,7 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     // MARK: - HELPER
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> FeedStore {
-        let sut = CoreDataFeedStore()
+        let sut = try! CoreDataFeedStore()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
