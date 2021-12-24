@@ -18,9 +18,11 @@ class ManagedFeedImage: NSManagedObject {
 
 class CoreDataFeedStore: FeedStore {
     private let container: NSPersistentContainer
+    private let context: NSManagedObjectContext
 
     init() throws {
         self.container = try NSPersistentContainer.load(modelName: "FeedStore", bundle: Bundle(for: Self.self))
+        self.context = container.newBackgroundContext()
     }
 
     func deleteCachedFeed(completion: @escaping DeletionCompletion) {
@@ -77,9 +79,9 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     }
 
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
-//        let sut = makeSUT()
+        //        let sut = makeSUT()
 
-//        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
+        //        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
     }
 
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
