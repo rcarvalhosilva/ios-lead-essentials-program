@@ -20,12 +20,13 @@ class CoreDataFeedStore: FeedStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
 
-    init() throws {
-        self.container = try NSPersistentContainer.load(modelName: "FeedStore", bundle: Bundle(for: Self.self))
+    init(storeURL: URL) throws {
+        self.container = try NSPersistentContainer.load(modelName: "FeedStore", storeURL: storeURL, bundle: Bundle(for: Self.self))
         self.context = container.newBackgroundContext()
     }
 
     func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+
     }
 
     func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
@@ -43,12 +44,14 @@ extension NSPersistentContainer {
         case failedToLoadPersistentStores(Error)
     }
 
-    static func load(modelName: String, bundle: Bundle) throws -> NSPersistentContainer {
+    static func load(modelName: String, storeURL: URL, bundle: Bundle) throws -> NSPersistentContainer {
         guard let model = NSManagedObjectModel.with(name: modelName, bundle: bundle) else {
             throw LoadingError.modelNotFound
         }
 
         let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        let description = NSPersistentStoreDescription(url: storeURL)
+        container.persistentStoreDescriptions = [description]
         var loadError: Error?
         container.loadPersistentStores { loadError = $1 }
         try loadError.map { throw LoadingError.failedToLoadPersistentStores($0) }
@@ -123,7 +126,8 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     // MARK: - HELPER
 
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> FeedStore {
-        let sut = try! CoreDataFeedStore()
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try! CoreDataFeedStore(storeURL: storeURL)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
