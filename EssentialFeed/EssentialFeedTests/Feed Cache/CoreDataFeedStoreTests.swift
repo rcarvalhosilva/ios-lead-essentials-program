@@ -59,11 +59,13 @@ class CoreDataFeedStore: FeedStore {
 
     func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         let context = self.context
-        do {
-            try ManagedCache.find(in: context).map(context.delete).map(context.save)
-            completion(nil)
-        } catch {
-            completion(error)
+        context.perform {
+            do {
+                try ManagedCache.find(in: context).map(context.delete).map(context.save)
+                completion(nil)
+            } catch {
+                completion(error)
+            }
         }
     }
 
@@ -196,7 +198,9 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     }
 
     func test_storeSideEffects_runSerially() {
+        let sut = makeSUT()
 
+        assertThatSideEffectsRunSerially(on: sut)
     }
 
     // MARK: - HELPER
