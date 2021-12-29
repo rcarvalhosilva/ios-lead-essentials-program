@@ -24,7 +24,7 @@ public class CoreDataFeedStore: FeedStore {
                 managedCache.timestamp = timestamp
                 managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
                 try context.save()
-            })
+            }) 
         }
     }
 
