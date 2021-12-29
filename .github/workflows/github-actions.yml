@@ -1,5 +1,5 @@
 name: GitHub Actions
-on: [push]
+on: [pull_requests]
 env:
   DEVELOPER_DIR: /Applications/Xcode_13.0.app/Contents/Developer
 jobs:
