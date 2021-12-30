@@ -16,6 +16,7 @@
 		C81969C6277DD642004A3E21 /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C89AD335273C75260052C4F5 /* EssentialFeed.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C81969CA277DD8D7004A3E21 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C43EA32742D3260090EAE2 /* XCTestCase+MemoryLeakTracking.swift */; };
 		C81969CC277DE558004A3E21 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81969CB277DE558004A3E21 /* FeedViewController.swift */; };
+		C81969CF277DE94C004A3E21 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AD335273C75260052C4F5 /* EssentialFeed.framework */; };
 		C827DA83275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA82275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		C827DA8627565D5D0061E608 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA8527565D5D0061E608 /* FeedStoreSpy.swift */; };
 		C8460466275C24DD00136670 /* ValidateCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8460465275C24DD00136670 /* ValidateCacheUseCaseTests.swift */; };
@@ -63,6 +64,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C89AD334273C75260052C4F5;
 			remoteInfo = EssentialFeed;
+		};
+		C81969CD277DE8EE004A3E21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C89AD32C273C75260052C4F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C81969AC277D5086004A3E21;
+			remoteInfo = EssentialFeediOS;
 		};
 		C86213242744776800934273 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -161,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81969CF277DE94C004A3E21 /* EssentialFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +453,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C81969CE277DE8EE004A3E21 /* PBXTargetDependency */,
 			);
 			name = EssentialFeediOSTests;
 			productName = EssentialFeediOSTests;
@@ -714,6 +724,11 @@
 			platformFilter = ios;
 			target = C89AD334273C75260052C4F5 /* EssentialFeed */;
 			targetProxy = C81969C7277DD642004A3E21 /* PBXContainerItemProxy */;
+		};
+		C81969CE277DE8EE004A3E21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C81969AC277D5086004A3E21 /* EssentialFeediOS */;
+			targetProxy = C81969CD277DE8EE004A3E21 /* PBXContainerItemProxy */;
 		};
 		C86213252744776800934273 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
