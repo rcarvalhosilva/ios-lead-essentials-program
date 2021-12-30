@@ -15,6 +15,7 @@
 		C81969C5277DD642004A3E21 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AD335273C75260052C4F5 /* EssentialFeed.framework */; platformFilter = ios; };
 		C81969C6277DD642004A3E21 /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C89AD335273C75260052C4F5 /* EssentialFeed.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C81969CA277DD8D7004A3E21 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C43EA32742D3260090EAE2 /* XCTestCase+MemoryLeakTracking.swift */; };
+		C81969CC277DE558004A3E21 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81969CB277DE558004A3E21 /* FeedViewController.swift */; };
 		C827DA83275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA82275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		C827DA8627565D5D0061E608 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA8527565D5D0061E608 /* FeedStoreSpy.swift */; };
 		C8460466275C24DD00136670 /* ValidateCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8460465275C24DD00136670 /* ValidateCacheUseCaseTests.swift */; };
@@ -108,6 +109,7 @@
 		C81969AD277D5086004A3E21 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81969B4277D5086004A3E21 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81969C2277DD0A3004A3E21 /* FeedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerTests.swift; sourceTree = "<group>"; };
+		C81969CB277DE558004A3E21 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		C827DA82275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C827DA8527565D5D0061E608 /* FeedStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpy.swift; sourceTree = "<group>"; };
 		C8460465275C24DD00136670 /* ValidateCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCacheUseCaseTests.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		C81969AE277D5086004A3E21 /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				C81969CB277DE558004A3E21 /* FeedViewController.swift */,
 			);
 			path = EssentialFeediOS;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				TargetAttributes = {
 					C81969AC277D5086004A3E21 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					C81969B3277D5086004A3E21 = {
 						CreatedOnToolsVersion = 13.1;
@@ -623,6 +627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81969CC277DE558004A3E21 /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +736,7 @@
 		C81969BC277D5086004A3E21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -752,6 +758,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -760,6 +767,7 @@
 		C81969BD277D5086004A3E21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
