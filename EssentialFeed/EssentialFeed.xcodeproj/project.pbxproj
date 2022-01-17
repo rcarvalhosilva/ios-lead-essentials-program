@@ -51,8 +51,8 @@
 		C854CB742794A47400961E5C /* Feed.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C854CB732794A47400961E5C /* Feed.xcassets */; };
 		C854CB762794B69C00961E5C /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854CB752794B69C00961E5C /* UITableView+Dequeueing.swift */; };
 		C854CB782794B7E800961E5C /* UImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854CB772794B7E800961E5C /* UImageView+Animations.swift */; };
-		C854CB7A27958AC400961E5C /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = C854CB7927958AC400961E5C /* Feed.strings */; };
 		C854CB7C27958E4E00961E5C /* FeedViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854CB7B27958E4E00961E5C /* FeedViewControllerTests+Localization.swift */; };
+		C854CB7D27958FE200961E5C /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = C854CB7F27958FE200961E5C /* Feed.strings */; };
 		C86213222744776800934273 /* EssentialFeedEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86213212744776800934273 /* EssentialFeedEndToEndTests.swift */; };
 		C86213232744776800934273 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89AD335273C75260052C4F5 /* EssentialFeed.framework */; };
 		C862132927449F6A00934273 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C43EA32742D3260090EAE2 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -177,8 +177,8 @@
 		C854CB732794A47400961E5C /* Feed.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Feed.xcassets; sourceTree = "<group>"; };
 		C854CB752794B69C00961E5C /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
 		C854CB772794B7E800961E5C /* UImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImageView+Animations.swift"; sourceTree = "<group>"; };
-		C854CB7927958AC400961E5C /* Feed.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Feed.strings; sourceTree = "<group>"; };
 		C854CB7B27958E4E00961E5C /* FeedViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
+		C854CB7E27958FE200961E5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		C862131F2744776800934273 /* EssentialFeedEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86213212744776800934273 /* EssentialFeedEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedEndToEndTests.swift; sourceTree = "<group>"; };
 		C89AD335273C75260052C4F5 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,7 +373,7 @@
 				C81F89DE27926D380083E8E4 /* FeedPresenter.swift */,
 				C854CB6F2793C3BC00961E5C /* FeedViewModel.swift */,
 				C854CB6D2793C38C00961E5C /* FeedLoadingViewModel.swift */,
-				C854CB7927958AC400961E5C /* Feed.strings */,
+				C854CB7F27958FE200961E5C /* Feed.strings */,
 			);
 			path = "Feed Presentation";
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 			files = (
 				C854CB722794813800961E5C /* Feed.storyboard in Resources */,
 				C854CB742794A47400961E5C /* Feed.xcassets in Resources */,
-				C854CB7A27958AC400961E5C /* Feed.strings in Resources */,
+				C854CB7D27958FE200961E5C /* Feed.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +906,17 @@
 			targetProxy = C8DD13EA27767D3D00D45BE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C854CB7F27958FE200961E5C /* Feed.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C854CB7E27958FE200961E5C /* en */,
+			);
+			name = Feed.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C81969BC277D5086004A3E21 /* Debug */ = {
