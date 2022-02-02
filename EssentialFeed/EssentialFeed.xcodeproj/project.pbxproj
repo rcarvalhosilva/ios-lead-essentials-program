@@ -32,6 +32,9 @@
 		C81F89D4278474300083E8E4 /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F89D3278474300083E8E4 /* FeedUIComposer.swift */; };
 		C81F89DF27926D380083E8E4 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F89DE27926D380083E8E4 /* FeedPresenter.swift */; };
 		C81F89E1279382950083E8E4 /* FeedImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F89E0279382950083E8E4 /* FeedImagePresenter.swift */; };
+		C825CC1427AAB52500C0447F /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C825CC1327AAB52500C0447F /* ErrorView.swift */; };
+		C825CC1727AABA2B00C0447F /* FeedErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C825CC1627AABA2B00C0447F /* FeedErrorViewModel.swift */; };
+		C825CC1927AABAD200C0447F /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C825CC1827AABAD200C0447F /* UIRefreshControl.swift */; };
 		C827DA83275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA82275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		C827DA8627565D5D0061E608 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827DA8527565D5D0061E608 /* FeedStoreSpy.swift */; };
 		C8460466275C24DD00136670 /* ValidateCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8460465275C24DD00136670 /* ValidateCacheUseCaseTests.swift */; };
@@ -163,6 +166,9 @@
 		C81F89D3278474300083E8E4 /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
 		C81F89DE27926D380083E8E4 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		C81F89E0279382950083E8E4 /* FeedImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImagePresenter.swift; sourceTree = "<group>"; };
+		C825CC1327AAB52500C0447F /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		C825CC1627AABA2B00C0447F /* FeedErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorViewModel.swift; sourceTree = "<group>"; };
+		C825CC1827AABAD200C0447F /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		C827DA82275657EE0061E608 /* LoadFeedFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		C827DA8527565D5D0061E608 /* FeedStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpy.swift; sourceTree = "<group>"; };
 		C8460465275C24DD00136670 /* ValidateCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCacheUseCaseTests.swift; sourceTree = "<group>"; };
@@ -310,11 +316,10 @@
 			isa = PBXGroup;
 			children = (
 				C81969D0277E104D004A3E21 /* FeedImageCell.swift */,
-				C81969D2277F5ED2004A3E21 /* UIView+Shimmering.swift */,
-				C854CB752794B69C00961E5C /* UITableView+Dequeueing.swift */,
+				C825CC1527AAB98800C0447F /* Helpers */,
 				C854CB712794813800961E5C /* Feed.storyboard */,
 				C854CB732794A47400961E5C /* Feed.xcassets */,
-				C854CB772794B7E800961E5C /* UImageView+Animations.swift */,
+				C825CC1327AAB52500C0447F /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -390,11 +395,23 @@
 				C81F89E0279382950083E8E4 /* FeedImagePresenter.swift */,
 				C854CB6B2793C2E200961E5C /* FeedImageViewModel.swift */,
 				C81F89DE27926D380083E8E4 /* FeedPresenter.swift */,
+				C825CC1627AABA2B00C0447F /* FeedErrorViewModel.swift */,
 				C854CB6F2793C3BC00961E5C /* FeedViewModel.swift */,
 				C854CB6D2793C38C00961E5C /* FeedLoadingViewModel.swift */,
 				C854CB7F27958FE200961E5C /* Feed.strings */,
 			);
 			path = "Feed Presentation";
+			sourceTree = "<group>";
+		};
+		C825CC1527AAB98800C0447F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C81969D2277F5ED2004A3E21 /* UIView+Shimmering.swift */,
+				C825CC1827AABAD200C0447F /* UIRefreshControl.swift */,
+				C854CB752794B69C00961E5C /* UITableView+Dequeueing.swift */,
+				C854CB772794B7E800961E5C /* UImageView+Animations.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C827DA8427565D410061E608 /* Helpers */ = {
@@ -806,10 +823,12 @@
 			files = (
 				C81F89DF27926D380083E8E4 /* FeedPresenter.swift in Sources */,
 				C81F89CE2783EF700083E8E4 /* FeedImageDataLoader.swift in Sources */,
+				C825CC1427AAB52500C0447F /* ErrorView.swift in Sources */,
 				C854CB702793C3BC00961E5C /* FeedViewModel.swift in Sources */,
 				C854CB762794B69C00961E5C /* UITableView+Dequeueing.swift in Sources */,
 				C854CB782794B7E800961E5C /* UImageView+Animations.swift in Sources */,
 				C854CB6E2793C38C00961E5C /* FeedLoadingViewModel.swift in Sources */,
+				C825CC1927AABAD200C0447F /* UIRefreshControl.swift in Sources */,
 				C855E59A27966E65001E2978 /* FeedLoaderPresentationAdapter.swift in Sources */,
 				C81969D3277F5ED3004A3E21 /* UIView+Shimmering.swift in Sources */,
 				C855E59627966D92001E2978 /* WeakRefVirtualProxy.swift in Sources */,
@@ -820,6 +839,7 @@
 				C855E59827966DF6001E2978 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
 				C81F89D227846FCB0083E8E4 /* FeedImageCellController.swift in Sources */,
 				C81F89E1279382950083E8E4 /* FeedImagePresenter.swift in Sources */,
+				C825CC1727AABA2B00C0447F /* FeedErrorViewModel.swift in Sources */,
 				C855E59C27966EC9001E2978 /* FeedViewAdapter.swift in Sources */,
 				C81F89D4278474300083E8E4 /* FeedUIComposer.swift in Sources */,
 			);
@@ -1071,6 +1091,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1092,6 +1113,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1242,6 +1264,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1270,6 +1293,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1293,6 +1317,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1315,6 +1340,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1336,6 +1362,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1358,6 +1385,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
