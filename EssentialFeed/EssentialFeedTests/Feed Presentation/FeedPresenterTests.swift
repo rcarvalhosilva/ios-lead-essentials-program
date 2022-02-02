@@ -48,14 +48,13 @@ final class FeedPresenter {
         self.errorView = errorView
     }
 
-    func didStartLoadingFeed() {
-        errorView.display(.noError)
-        loadingView.display(FeedLoadingViewModel(isLoading: true))
-    }
-
-    func didFinishLoadingFeed(with feed: [FeedImage]) {
-        feedView.display(FeedViewModel(feed: feed))
-        loadingView.display(FeedLoadingViewModel(isLoading: false))
+    static var title: String {
+        NSLocalizedString(
+            "FEED_VIEW_TITLE",
+            tableName: "Feed",
+            bundle: Bundle(for: FeedPresenter.self),
+            comment: "Title for the feed view"
+        )
     }
 
     private var feedLoadError: String {
@@ -67,6 +66,16 @@ final class FeedPresenter {
         )
     }
 
+    func didStartLoadingFeed() {
+        errorView.display(.noError)
+        loadingView.display(FeedLoadingViewModel(isLoading: true))
+    }
+
+    func didFinishLoadingFeed(with feed: [FeedImage]) {
+        feedView.display(FeedViewModel(feed: feed))
+        loadingView.display(FeedLoadingViewModel(isLoading: false))
+    }
+
     func didFinishLoadingFeed(with error: Error) {
         errorView.display(.error(message: feedLoadError))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
@@ -74,6 +83,10 @@ final class FeedPresenter {
 }
 
 class FeedPresenterTests: XCTestCase {
+    func test_title_isLocalized() {
+        XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
+    }
+
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
 
@@ -134,7 +147,7 @@ class FeedPresenterTests: XCTestCase {
         }
         return value
     }
-    
+
     private class ViewSpy: FeedErrorView, FeedLoadingView, FeedView {
         enum Message: Hashable {
             case display(errorMessage: String?)
