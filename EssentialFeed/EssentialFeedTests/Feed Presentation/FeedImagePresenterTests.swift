@@ -41,17 +41,11 @@ final class FeedImagePresenter<View: FeedImageView> {
         view.display(viewModel)
     }
 
+    private struct InvalidImageDataError: Error {}
+
     func didFinishLoadingImage(with data: Data, for model: FeedImage) {
         guard let image = imageTransformer(data) else {
-            let viewModel = FeedImageViewModel<Image>(
-                description: model.description,
-                location: model.location,
-                image: nil,
-                isLoading: false,
-                shouldRetry: true
-            )
-
-            return view.display(viewModel)
+            return didFinishLoadingImage(with: InvalidImageDataError(), for: model)
         }
 
         let viewModel = FeedImageViewModel<Image>(
