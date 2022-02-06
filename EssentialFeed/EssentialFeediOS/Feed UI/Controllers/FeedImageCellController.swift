@@ -1,4 +1,5 @@
 import UIKit
+import EssentialFeed
 
 protocol FeedImageViewDelegate {
     func didRequestImage()

@@ -1,11 +1,11 @@
 import EssentialFeed
 
-final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView, Image>: FeedImageViewDelegate where View.Image == Image {
+final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView>: FeedImageViewDelegate {
     private var task: FeedImageDataLoaderTask?
     private let imageLoader: FeedImageDataLoader
     private let model: FeedImage
 
-    var presenter: FeedImagePresenter<View, Image>?
+    var presenter: FeedImagePresenter<View>?
 
     init(imageLoader: FeedImageDataLoader, model: FeedImage) {
         self.imageLoader = imageLoader
