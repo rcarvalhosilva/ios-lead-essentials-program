@@ -21,13 +21,23 @@ class LoadFeedImageDataFromRemoteUseCase: XCTestCase {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
 
-    func test_loadImageData_requestsDataFromGivenURL() {
+    func test_loadImageDataFromURL_requestsDataFromURL() {
         let url = anyURL()
         let (sut, client) = makeSUT()
 
         sut.loadImageData(from: url)
 
         XCTAssertEqual(client.requestedURLs, [url])
+    }
+
+    func test_loadImageDataFromURLTwice_requestsDataFromURLTwice() {
+        let url = anyURL()
+        let (sut, client) = makeSUT()
+
+        sut.loadImageData(from: url)
+        sut.loadImageData(from: url)
+
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
 
     // MARK: - Helpers
