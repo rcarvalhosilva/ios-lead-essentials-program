@@ -47,16 +47,14 @@ final class ViewSpy: FeedImageView {
 
 class FeedImagePresenterTests: XCTestCase {
     func test_init_doesNotSendMessagesToView() {
-        let view = ViewSpy()
-        let _ = FeedImagePresenter(view: view)
+        let (_, view) = makeSUT()
 
         XCTAssertTrue(view.messages.isEmpty, "Expected no messages to view")
     }
 
     func test_didStartLoadingImage_displaysLoadingImage() {
-        let view = ViewSpy()
+        let (sut, view) = makeSUT()
         let image = uniqueImage()
-        let sut = FeedImagePresenter(view: view)
 
         sut.didStartLoadingImage(for: image)
 
@@ -67,5 +65,14 @@ class FeedImagePresenterTests: XCTestCase {
         XCTAssertEqual(message?.isLoading, true)
         XCTAssertEqual(message?.location, image.location)
         XCTAssertEqual(message?.description, image.description)
+    }
+    
+    // MARK: - Helpers
+
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (FeedImagePresenter, ViewSpy) {
+        let view = ViewSpy()
+        let sut = FeedImagePresenter(view: view)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return (sut, view)
     }
 }
