@@ -26,8 +26,6 @@ final class FeedImagePresenter {
         view.display(viewModel)
     }
 
-    private struct InvalidImageDataError: Error {}
-
     func didFinishLoadingImage(with data: Data, for model: FeedImage) {
         guard imageTransformer(data) != nil else {
             let viewModel = FeedImageViewModel(
