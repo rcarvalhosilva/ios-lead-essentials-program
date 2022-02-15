@@ -235,8 +235,4 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
             messages[index].completion(.success((data, response)))
         }
     }
-
-    private func anyData() -> Data {
-        .init("any data".utf8)
-    }
 }

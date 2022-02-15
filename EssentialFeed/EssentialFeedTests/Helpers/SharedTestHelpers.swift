@@ -14,3 +14,7 @@ func anyNSError() -> NSError {
 func anyURL() -> URL {
     URL(string: "https://any-url.com")!
 }
+
+func anyData() -> Data {
+    .init("any data".utf8)
+}
