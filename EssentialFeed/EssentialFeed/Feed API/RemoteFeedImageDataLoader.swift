@@ -1,17 +1,17 @@
-public final class HTTPClientTaskWrapper {
-    private var completion: ((Result<Data, RemoteFeedImageDataLoader.Error>) -> Void)?
+private final class HTTPClientTaskWrapper: FeedImageDataLoaderTask {
+    private var completion: ((FeedImageDataLoader.Result) -> Void)?
 
     var wrapped: HTTPClientTask?
 
-    init(_ completion: @escaping ((Result<Data, RemoteFeedImageDataLoader.Error>) -> Void)) {
+    init(_ completion: @escaping ((FeedImageDataLoader.Result) -> Void)) {
         self.completion = completion
     }
 
-    func complete(with result: Result<Data, RemoteFeedImageDataLoader.Error>) {
+    func complete(with result: FeedImageDataLoader.Result) {
         completion?(result)
     }
 
-    public func cancel() {
+    func cancel() {
         preventFurtherCompletion()
         wrapped?.cancel()
     }
@@ -21,7 +21,7 @@ public final class HTTPClientTaskWrapper {
     }
 }
 
-public final class RemoteFeedImageDataLoader {
+public final class RemoteFeedImageDataLoader: FeedImageDataLoader {
     private let client: HTTPClient
 
     public enum Error: Swift.Error {
@@ -34,7 +34,7 @@ public final class RemoteFeedImageDataLoader {
     }
 
     @discardableResult
-    public func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> HTTPClientTaskWrapper {
+    public func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
         let task = HTTPClientTaskWrapper(completion)
         task.wrapped = client.get(from: url) { [weak self] result in
             guard self != nil else { return }
@@ -43,9 +43,9 @@ public final class RemoteFeedImageDataLoader {
             case let .success((data, response)) where response.statusCode == 200 && !data.isEmpty:
                 task.complete(with: .success(data))
             case .success:
-                task.complete(with: .failure(.invalidData))
+                task.complete(with: .failure(Error.invalidData))
             case .failure:
-                task.complete(with: .failure(.connectivity))
+                task.complete(with: .failure(Error.connectivity))
             }
         }
 
