@@ -24,7 +24,6 @@ class EssentialFeedEndToEndTests: XCTestCase {
         }
     }
 
-
     func test_endToEndTestServerGETFeedImageDataResult_matchesFixedTestAccountData() {
         switch getFeedImageDataResult() {
         case let .success(data)?:
