@@ -28,7 +28,7 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
 
-    func test_loadImageDataFromURL_deliversErrorOnClientError() {
+    func test_loadImageDataFromURL_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         let error = anyNSError()
 
@@ -37,7 +37,7 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
         }
     }
 
-    func test_loadImageDataFromURL_deliversErrorOnNon200HTTPResponse() {
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         let data = anyData()
 
@@ -49,7 +49,7 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
         }
     }
 
-    func test_loadImageDataFromURL_deliversErrorOn200HTTPResponseWithEmptyData() {
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOn200HTTPResponseWithEmptyData() {
         let (sut, client) = makeSUT()
 
         expect(sut, toCompleteWith: failure(.invalidData)) {
