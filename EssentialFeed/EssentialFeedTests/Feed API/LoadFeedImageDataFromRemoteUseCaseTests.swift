@@ -1,61 +1,6 @@
 import XCTest
 import EssentialFeed
 
-final class HTTPClientTaskWrapper {
-    private var completion: ((Result<Data, RemoteFeedImageDataLoader.Error>) -> Void)?
-
-    var wrapped: HTTPClientTask?
-
-    init(_ completion: @escaping ((Result<Data, RemoteFeedImageDataLoader.Error>) -> Void)) {
-        self.completion = completion
-    }
-
-    func complete(with result: Result<Data, RemoteFeedImageDataLoader.Error>) {
-        completion?(result)
-    }
-
-    func cancel() {
-        preventFurtherCompletion()
-        wrapped?.cancel()
-    }
-
-    private func preventFurtherCompletion() {
-        completion = nil
-    }
-}
-
-final class RemoteFeedImageDataLoader {
-    private let client: HTTPClient
-
-    public enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-
-    init(client: HTTPClient) {
-        self.client = client
-    }
-
-    @discardableResult
-    func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> HTTPClientTaskWrapper {
-        let task = HTTPClientTaskWrapper(completion)
-        task.wrapped = client.get(from: url) { [weak self] result in
-            guard self != nil else { return }
-
-            switch result {
-            case let .success((data, response)) where response.statusCode == 200 && !data.isEmpty:
-                task.complete(with: .success(data))
-            case .success:
-                task.complete(with: .failure(.invalidData))
-            case .failure:
-                task.complete(with: .failure(.connectivity))
-            }
-        }
-
-        return task
-    }
-}
-
 class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
 
     func test_init_doesNotPerformAnyURLRequest() {
