@@ -1,6 +1,11 @@
 import Foundation
 
 public final class LocalFeedImageLoader {
+    public enum Error: Swift.Error {
+        case failed
+        case notFound
+    }
+
     private final class Task: FeedImageDataLoaderTask {
         private var completion: ((FeedImageDataLoader.Result) -> Void)?
 
@@ -21,11 +26,6 @@ public final class LocalFeedImageLoader {
         }
     }
 
-    public enum Error: Swift.Error {
-        case failed
-        case notFound
-    }
-
     private let store: FeedImageDataStore
 
     public init(store: FeedImageDataStore) {
@@ -44,5 +44,10 @@ public final class LocalFeedImageLoader {
         }
 
         return task
+    }
+
+    public typealias SaveResult = Result<Void, Swift.Error>
+    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        store.insert(data: data, for: url) { _ in }
     }
 }

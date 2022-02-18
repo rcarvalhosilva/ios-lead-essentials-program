@@ -133,5 +133,8 @@ class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
         func completeRetrieval(with data: Data?, at index: Int = 0) {
             retrievalCompletions[index](.success(data))
         }
+
+        func insert(data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
+        }
     }
 }
