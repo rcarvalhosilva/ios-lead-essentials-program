@@ -8,9 +8,9 @@ final class FeedImageDataStoreSpy: FeedImageDataStore {
     }
 
     private(set) var receivedMessages = [Messages]()
-    private(set) var retrievalCompletions = [(FeedImageDataStore.Result) -> Void]()
+    private(set) var retrievalCompletions = [(FeedImageDataStore.RetrieveResult) -> Void]()
 
-    func retrive(dataForURL url: URL, completion: @escaping (FeedImageDataStore.Result) -> Void) {
+    func retrive(dataForURL url: URL, completion: @escaping (FeedImageDataStore.RetrieveResult) -> Void) {
         receivedMessages.append(.retrieve(dataFor: url))
         retrievalCompletions.append(completion)
     }
