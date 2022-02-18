@@ -2,6 +2,12 @@ import EssentialFeed
 import XCTest
 
 class CacheFeedImageDataUseCaseTests: XCTestCase {
+    
+    func test_init_doesNotMessageStoreUponCreation() {
+        let (_, store) = makeSUT()
+
+        XCTAssertTrue(store.receivedMessages.isEmpty)
+    }
 
     func test_saveImageDataForURL_requestsImageDataInsertionForUrl() {
         let (sut, client) = makeSUT()
