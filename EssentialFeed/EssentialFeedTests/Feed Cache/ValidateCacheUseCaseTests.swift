@@ -70,6 +70,25 @@ class ValidateCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCachedFeed])
     }
 
+    func test_validateCache_failsOnDeletionErrorOfFailedRetrieval() {
+        let (store, sut) = makeSUT()
+        let deletionError = anyNSError(domain: "deletionError")
+
+        expect(sut, toCompleteWith: .failure(deletionError)) {
+            store.completeRetrieval(with: anyNSError(domain: "retrieval error"))
+            store.completeDeletion(with: deletionError)
+        }
+    }
+
+    func test_validateCache_succeedsOnSuccessfulDeletionOfFailedRetrieval() {
+        let (store, sut) = makeSUT()
+
+        expect(sut, toCompleteWith: .success(())) {
+            store.completeRetrieval(with: anyNSError(domain: "retrieval error"))
+            store.completeDeletionSuccessfully()
+        }
+    }
+
     func test_validateCache_doesNotDeleteInvalidCacheAfterSUTInstanceHasBeenDeallocated() {
         let store = FeedStoreSpy()
         var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
@@ -88,5 +107,30 @@ class ValidateCacheUseCaseTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (store, sut)
+    }
+
+    private func expect(
+        _ sut: LocalFeedLoader,
+        toCompleteWith expectedResult: LocalFeedLoader.ValidationResult,
+        when action: () -> Void,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for validation completion")
+        sut.validateCache() { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            case (.success, .success):
+                break
+            default:
+                XCTFail("Expected result \(expectedResult), got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+
+        action()
+
+        wait(for: [exp], timeout: 1.0)
     }
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-func anyNSError() -> NSError {
-    NSError(domain: "any domain", code: 400, userInfo: nil)
+func anyNSError(domain: String = "any domain") -> NSError {
+    NSError(domain: domain, code: 400, userInfo: nil)
 }
 
 func anyURL() -> URL {
