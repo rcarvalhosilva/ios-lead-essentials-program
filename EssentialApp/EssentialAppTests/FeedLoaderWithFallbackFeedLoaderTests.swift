@@ -2,7 +2,7 @@ import XCTest
 import EssentialFeed
 import EssentialApp
 
-class RemoteWithLocalFallbackFeedLoaderTests: XCTestCase {
+class FeedLoaderWithFallbackFeedLoaderTests: XCTestCase {
 
     func test_load_deliversPrimaryFeedOnPrimarySuccess() {
         let primaryFeed = uniqueFeed()
