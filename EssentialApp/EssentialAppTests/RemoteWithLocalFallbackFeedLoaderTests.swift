@@ -15,7 +15,7 @@ final class FeedLoaderWithFallbackComposite: FeedLoader {
 
 class RemoteWithLocalFallbackFeedLoaderTests: XCTestCase {
 
-    func test_load_deliversRemoteFeedOnRemoteSuccess() {
+    func test_load_deliversPrimaryFeedOnPrimarySuccess() {
         let primaryFeed = uniqueFeed()
         let fallbackFeed = uniqueFeed()
         let sut = makeSUT(primaryResult: .success(primaryFeed), fallbackResult: .success(fallbackFeed))
