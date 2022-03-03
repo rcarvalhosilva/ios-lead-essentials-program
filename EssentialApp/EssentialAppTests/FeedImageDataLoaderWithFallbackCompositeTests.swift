@@ -34,7 +34,7 @@ final class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
     }
 }
 
-class FeedImageDataLoaderWithFallbackFeedLoaderTests: XCTestCase {
+class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
 
     func test_loadImageData_loadsFromPrimaryLoaderFirst() {
         let url = anyURL()
