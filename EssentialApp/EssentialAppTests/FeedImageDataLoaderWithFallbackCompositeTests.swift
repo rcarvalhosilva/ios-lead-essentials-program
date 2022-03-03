@@ -112,14 +112,6 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func anyURL() -> URL {
-        URL(string: "www.any-url.com")!
-    }
-
-    private func anyData() -> Data {
-        Data("any data".utf8)
-    }
-
     private class LoaderSpy: FeedImageDataLoader {
         private var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
 

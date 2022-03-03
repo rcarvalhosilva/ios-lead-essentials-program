@@ -2,7 +2,7 @@ import XCTest
 import EssentialFeed
 import EssentialApp
 
-class FeedLoaderWithFallbackFeedLoaderTests: XCTestCase {
+class FeedLoaderWithFallbackFeedCompositeTests: XCTestCase {
 
     func test_load_deliversPrimaryFeedOnPrimarySuccess() {
         let primaryFeed = uniqueFeed()
@@ -61,7 +61,7 @@ class FeedLoaderWithFallbackFeedLoaderTests: XCTestCase {
     }
 
     private func uniqueFeed() -> [FeedImage] {
-        [FeedImage(id: UUID(), description: "any", location: "any location", url: URL(string: "http://any-url.com")!)]
+        [FeedImage(id: UUID(), description: "any", location: "any location", url: anyURL()]
     }
 
     final class LoaderStub: FeedLoader {
