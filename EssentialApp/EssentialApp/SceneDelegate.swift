@@ -1,12 +1,6 @@
-//
-//  SceneDelegate.swift
-//  EssentialApp
-//
-//  Created by Rodrigo Carvalho on 25/02/22.
-//
-
 import EssentialFeed
 import EssentialFeediOS
+import CoreData
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -21,10 +15,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedUrl = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         let session = URLSession(configuration: .ephemeral)
         let client = URLSessionHTTPClient(session: session)
-        let feedLoader = RemoteFeedLoader(url: feedUrl, client: client)
-        let imageLoader = RemoteFeedImageDataLoader(client: client)
 
-        let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoader, imageLoader: imageLoader)
+        let remoteFeedLoader = RemoteFeedLoader(url: feedUrl, client: client)
+        let remoteImageLoader = RemoteFeedImageDataLoader(client: client)
+
+        let localStoreURL = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("feed-store.sqlite")
+        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
+        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
+        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
+
+        let feedViewController = FeedUIComposer.feedComposedWith(
+            feedLoader: FeedLoaderWithFallbackComposite(primary: remoteFeedLoader, fallback: localFeedLoader),
+            imageLoader: FeedImageDataLoaderWithFallbackComposite(primary: localImageLoader, fallback: remoteImageLoader)
+        )
 
         window?.rootViewController = feedViewController
     }
