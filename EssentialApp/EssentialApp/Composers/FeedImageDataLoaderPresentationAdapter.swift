@@ -1,4 +1,5 @@
 import EssentialFeed
+import EssentialFeediOS
 
 final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView>: FeedImageViewDelegate {
     private var task: FeedImageDataLoaderTask?

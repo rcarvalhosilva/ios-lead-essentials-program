@@ -1,15 +1,15 @@
 import UIKit
 import EssentialFeed
 
-protocol FeedImageViewDelegate {
+public protocol FeedImageViewDelegate {
     func didRequestImage()
     func didCancelImageRequest()
 }
 
-final class FeedImageCellController: FeedImageView {
+public final class FeedImageCellController: FeedImageView {
     private let delegate: FeedImageViewDelegate
 
-    init(delegate: FeedImageViewDelegate) {
+    public init(delegate: FeedImageViewDelegate) {
         self.delegate = delegate
     }
     
@@ -21,7 +21,7 @@ final class FeedImageCellController: FeedImageView {
         return cell!
     }
 
-    func display(_ viewModel: FeedImageViewModel<UIImage>) {
+    public func display(_ viewModel: FeedImageViewModel<UIImage>) {
         cell?.locationContainer.isHidden = !viewModel.hasLocation
         cell?.locationLabel.text = viewModel.location
         cell?.descriptionLabel.text = viewModel.description
