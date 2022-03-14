@@ -1,15 +1,15 @@
 import UIKit
 import EssentialFeed
 
-public protocol FeedImageViewDelegate {
+public protocol FeedImageCellControllerDelegate {
     func didRequestImage()
     func didCancelImageRequest()
 }
 
 public final class FeedImageCellController: FeedImageView {
-    private let delegate: FeedImageViewDelegate
+    private let delegate: FeedImageCellControllerDelegate
 
-    public init(delegate: FeedImageViewDelegate) {
+    public init(delegate: FeedImageCellControllerDelegate) {
         self.delegate = delegate
     }
     

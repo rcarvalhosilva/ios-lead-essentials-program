@@ -1,7 +1,7 @@
 import EssentialFeed
 import EssentialFeediOS
 
-final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView>: FeedImageViewDelegate {
+final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView>: FeedImageCellControllerDelegate {
     private var task: FeedImageDataLoaderTask?
     private let imageLoader: FeedImageDataLoader
     private let model: FeedImage
