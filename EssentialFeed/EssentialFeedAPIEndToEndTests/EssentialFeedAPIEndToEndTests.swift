@@ -1,5 +1,6 @@
 import XCTest
 import EssentialFeed
+import EssentialFeedAPI
 
 class EssentialFeedEndToEndTests: XCTestCase {
 

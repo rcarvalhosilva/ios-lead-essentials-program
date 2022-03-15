@@ -1,3 +1,5 @@
+import EssentialFeed
+
 private final class HTTPClientTaskWrapper: FeedImageDataLoaderTask {
     private var completion: ((FeedImageDataLoader.Result) -> Void)?
 
