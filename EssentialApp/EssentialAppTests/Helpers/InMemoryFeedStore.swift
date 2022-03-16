@@ -1,5 +1,6 @@
 import EssentialFeed
 import Foundation
+import EssentialFeedCache
 
 class InMemoryFeedStore: FeedStore, FeedImageDataStore {
     private(set) var feedCache: CachedFeed?

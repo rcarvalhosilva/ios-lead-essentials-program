@@ -1,5 +1,5 @@
 import UIKit
-import EssentialFeed
+import EssentialFeedPresentation
 
 public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
