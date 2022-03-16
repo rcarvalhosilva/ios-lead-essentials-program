@@ -1,5 +1,6 @@
 import XCTest
 import EssentialFeed
+import EssentialFeedPresentation
 
 class FeedPresenterTests: XCTestCase {
     func test_title_isLocalized() {

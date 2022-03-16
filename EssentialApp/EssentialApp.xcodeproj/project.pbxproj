@@ -60,6 +60,8 @@
 		C8F788BE27E1EFDE00E4BD3E /* EssentialFeedCache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8F788BC27E1EFDE00E4BD3E /* EssentialFeedCache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C8F788E927E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F788E827E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework */; };
 		C8F788EA27E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8F788E827E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C8F7893A27E2069500E4BD3E /* EssentialFeedPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F7893927E2069500E4BD3E /* EssentialFeedPresentation.framework */; };
+		C8F7893B27E2069500E4BD3E /* EssentialFeedPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8F7893927E2069500E4BD3E /* EssentialFeedPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 				C8CB7BAF27E0B56800E3F501 /* EssentialFeedAPI.framework in Embed Frameworks */,
 				C8F788BE27E1EFDE00E4BD3E /* EssentialFeedCache.framework in Embed Frameworks */,
 				C8216C0E27C8F525002DE91B /* EssentialFeed.framework in Embed Frameworks */,
+				C8F7893B27E2069500E4BD3E /* EssentialFeedPresentation.framework in Embed Frameworks */,
 				C8F788EA27E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework in Embed Frameworks */,
 				C8216C1027C8F525002DE91B /* EssentialFeediOS.framework in Embed Frameworks */,
 				C8F7882C27E17B0C00E4BD3E /* EssentialFeedAPIInfrastructure.framework in Embed Frameworks */,
@@ -143,6 +146,7 @@
 		C8F7882A27E17B0C00E4BD3E /* EssentialFeedAPIInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedAPIInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F788BC27E1EFDE00E4BD3E /* EssentialFeedCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F788E827E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedCacheInfrastructure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8F7893927E2069500E4BD3E /* EssentialFeedPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeedPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 				C8CB7BAE27E0B56800E3F501 /* EssentialFeedAPI.framework in Frameworks */,
 				C8F788BD27E1EFDE00E4BD3E /* EssentialFeedCache.framework in Frameworks */,
 				C8216C0D27C8F525002DE91B /* EssentialFeed.framework in Frameworks */,
+				C8F7893A27E2069500E4BD3E /* EssentialFeedPresentation.framework in Frameworks */,
 				C8F788E927E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework in Frameworks */,
 				C8216C0F27C8F525002DE91B /* EssentialFeediOS.framework in Frameworks */,
 				C8F7882B27E17B0C00E4BD3E /* EssentialFeedAPIInfrastructure.framework in Frameworks */,
@@ -225,6 +230,7 @@
 		C8216C0A27C8F525002DE91B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8F7893927E2069500E4BD3E /* EssentialFeedPresentation.framework */,
 				C8F788E827E1F48700E4BD3E /* EssentialFeedCacheInfrastructure.framework */,
 				C8F788BC27E1EFDE00E4BD3E /* EssentialFeedCache.framework */,
 				C8F7882A27E17B0C00E4BD3E /* EssentialFeedAPIInfrastructure.framework */,

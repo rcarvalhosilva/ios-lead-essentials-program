@@ -1,5 +1,6 @@
 import UIKit
 import EssentialFeed
+import EssentialFeedPresentation
 import EssentialFeediOS
 
 final class FeedViewAdapter: FeedView {

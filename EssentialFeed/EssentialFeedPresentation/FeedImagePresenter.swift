@@ -1,3 +1,5 @@
+import EssentialFeed
+
 public protocol FeedImageView {
     associatedtype Image
 

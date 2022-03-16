@@ -1,5 +1,5 @@
 import XCTest
-import EssentialFeed
+import EssentialFeedPresentation
 
 class FeedImagePresenterTests: XCTestCase {
     func test_init_doesNotSendMessagesToView() {

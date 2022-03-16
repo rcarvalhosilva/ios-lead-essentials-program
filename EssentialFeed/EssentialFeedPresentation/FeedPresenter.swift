@@ -1,11 +1,4 @@
-//
-//  FeedPresenter.swift
-//  EssentialFeed
-//
-//  Created by Rodrigo Carvalho on 02/02/22.
-//
-
-import Foundation
+import EssentialFeed
 
 public protocol FeedLoadingView {
     func display(_ viewModel: FeedLoadingViewModel)
