@@ -1,5 +1,6 @@
 import XCTest
 import EssentialFeed
+import EssentialFeedCache
 
 extension FailableRetrieveFeedStoreSpecs where Self: XCTestCase {
     func assertThatRetrieveDeliversFailureOnRetrievalError(on sut: FeedStore, file: StaticString = #file, line: UInt = #line) {

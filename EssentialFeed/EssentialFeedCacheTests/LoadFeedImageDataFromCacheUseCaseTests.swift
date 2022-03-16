@@ -1,5 +1,6 @@
 import XCTest
 import EssentialFeed
+import EssentialFeedCache
 
 class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
     func test_init_doesNotMessageStoreUponCreation() {

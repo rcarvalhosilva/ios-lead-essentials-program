@@ -6,6 +6,7 @@
 //
 
 import EssentialFeed
+import EssentialFeedCache
 import XCTest
 
 class ValidateCacheUseCaseTests: XCTestCase {

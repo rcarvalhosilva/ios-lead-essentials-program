@@ -7,6 +7,7 @@
 
 import Foundation
 import EssentialFeed
+import EssentialFeedCache
 
 class FeedStoreSpy: FeedStore {
     enum ReceivedMessage: Equatable {

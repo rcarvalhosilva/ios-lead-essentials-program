@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EssentialFeed
 
 public final class LocalFeedLoader {
     private let store: FeedStore
