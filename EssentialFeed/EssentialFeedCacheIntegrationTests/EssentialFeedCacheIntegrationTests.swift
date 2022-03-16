@@ -8,6 +8,7 @@
 import XCTest
 import EssentialFeed
 import EssentialFeedCache
+import EssentialFeedCacheInfrastructure
 
 class EssentialFeedCacheIntegrationTests: XCTestCase {
     override func setUp() {

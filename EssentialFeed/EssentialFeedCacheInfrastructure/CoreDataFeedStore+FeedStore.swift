@@ -1,3 +1,4 @@
+import EssentialFeedCache
 import CoreData
 
 extension CoreDataFeedStore: FeedStore {

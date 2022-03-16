@@ -1,5 +1,4 @@
 import XCTest
-import EssentialFeed
 import EssentialFeedCache
 
 extension FailableDeleteFeedStoreSpecs where Self: XCTestCase {

@@ -1,6 +1,6 @@
 import XCTest
-import EssentialFeed
 import EssentialFeedCache
+import EssentialFeedCacheInfrastructure
 
 class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     func test_retrieve_deliversEmptyOnEmptyCache() {

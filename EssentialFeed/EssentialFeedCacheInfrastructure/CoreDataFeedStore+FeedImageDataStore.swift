@@ -1,4 +1,6 @@
 import CoreData
+import EssentialFeedCache
+
 extension CoreDataFeedStore: FeedImageDataStore {
 
     public func retrive(dataForURL url: URL, completion: @escaping (FeedImageDataStore.RetrievalResult) -> Void) {

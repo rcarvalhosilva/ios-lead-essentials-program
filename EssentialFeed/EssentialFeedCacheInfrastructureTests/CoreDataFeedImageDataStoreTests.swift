@@ -1,5 +1,5 @@
-import EssentialFeed
 import EssentialFeedCache
+import EssentialFeedCacheInfrastructure
 import XCTest
 
 class CoreDataFeedImageDataStoreTests: XCTestCase {
