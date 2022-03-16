@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8F7888B27E1EF2A00E4BD3E"
+               BlueprintIdentifier = "C8216BD627C8F2F7002DE91B"
                BuildableName = "EssentialApp.app"
                BlueprintName = "EssentialApp"
                ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
@@ -32,7 +32,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8F7888B27E1EF2A00E4BD3E"
+            BlueprintIdentifier = "C8216BD627C8F2F7002DE91B"
             BuildableName = "EssentialApp.app"
             BlueprintName = "EssentialApp"
             ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
@@ -45,26 +45,6 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8216BEC27C8F2F9002DE91B"
-               BuildableName = "EssentialAppTests.xctest"
-               BlueprintName = "EssentialAppTests"
-               ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8F788AA27E1EF2C00E4BD3E"
-               BuildableName = "EssentialAppUITests.xctest"
-               BlueprintName = "EssentialAppUITests"
-               ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C8F788A027E1EF2C00E4BD3E"
                BuildableName = "EssentialAppTests.xctest"
                BlueprintName = "EssentialAppTests"
                ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
@@ -86,7 +66,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8F7888B27E1EF2A00E4BD3E"
+            BlueprintIdentifier = "C8216BD627C8F2F7002DE91B"
             BuildableName = "EssentialApp.app"
             BlueprintName = "EssentialApp"
             ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
@@ -103,7 +83,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C8F7888B27E1EF2A00E4BD3E"
+            BlueprintIdentifier = "C8216BD627C8F2F7002DE91B"
             BuildableName = "EssentialApp.app"
             BlueprintName = "EssentialApp"
             ReferencedContainer = "container:EssentialApp/EssentialApp.xcodeproj">
