@@ -3,11 +3,11 @@ import EssentialFeedPresentation
 import EssentialFeediOS 
 import UIKit
 
-public final class FeedUIComposer {
+final class FeedUIComposer {
     private init() {}
 
-    public static func feedComposedWith(feedLoader: FeedLoader, imageLoader: FeedImageDataLoader) -> FeedViewController {
-        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: MainQueueDispatchDecorator(feedLoader))
+    static func feedComposedWith(feedLoader: @escaping () -> FeedLoader.Publisher, imageLoader: FeedImageDataLoader) -> FeedViewController {
+        let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: { feedLoader().dispatchOnMainQueue() })
         let feedController = makeFeedViewControllerWith(delegate: presentationAdapter, title: FeedPresenter.title)
         let presenter = FeedPresenter(
             feedView: FeedViewAdapter(
