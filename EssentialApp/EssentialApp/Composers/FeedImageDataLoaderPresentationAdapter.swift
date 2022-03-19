@@ -20,7 +20,9 @@ final class FeedImageDataLoaderPresentationAdapter<View: FeedImageView>: FeedIma
         presenter?.didStartLoadingImage(for: model)
         let model = self.model
 
-        cancellable = imageLoader(model.url).sink { [weak self] completion in
+        cancellable = imageLoader(model.url)
+            .dispatchOnMainQueue()
+            .sink { [weak self] completion in
             if case let .failure(error) = completion {
                 self?.presenter?.didFinishLoadingImage(with: error, for: model)
             }
