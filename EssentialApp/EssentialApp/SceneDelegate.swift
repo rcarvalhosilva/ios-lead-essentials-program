@@ -22,14 +22,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
     }()
 
-    private lazy var localFeedLoader: LocalFeedLoader = {
-        LocalFeedLoader(store: store, currentDate: Date.init)
-    }()
+    private lazy var localFeedLoader: LocalFeedLoader = LocalFeedLoader(store: store, currentDate: Date.init)
+    private lazy var  localImageLoader = LocalFeedImageDataLoader(store: store)
 
     private lazy var remoteFeedLoader: RemoteFeedLoader = {
         let feedUrl = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         return RemoteFeedLoader(url: feedUrl, client: httpClient)
     }()
+
+    private lazy var remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
     
     convenience init(httpClient: HTTPClient, store: FeedStore & FeedImageDataStore) {
         self.init()
@@ -46,19 +47,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func configureWindow() {
-        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
-
-        let localImageLoader = LocalFeedImageDataLoader(store: store)
-
         let feedViewController = FeedUIComposer.feedComposedWith(
             feedLoader: makeRemoteFeedLoaderWithLocalFallback,
-            imageLoader: FeedImageDataLoaderWithFallbackComposite(
-                primary: localImageLoader,
-                fallback: FeedImageDataLoaderCacheDecorator(
-                    decoratee: remoteImageLoader,
-                    cache: localImageLoader
-                )
-            )
+            imageLoader: makeLocalImageDataLoaderWithRemoteFallback
         )
 
         window?.rootViewController = UINavigationController(rootViewController: feedViewController)
@@ -70,10 +61,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         localFeedLoader.validateCache { _ in }
     }
 
-    private func makeRemoteFeedLoaderWithLocalFallback() -> RemoteFeedLoader.Publisher {
+    private func makeRemoteFeedLoaderWithLocalFallback() -> FeedLoader.Publisher {
         return remoteFeedLoader.loadPublisher()
             .caching(to: localFeedLoader)
             .fallback(to: localFeedLoader.loadPublisher)
+    }
+
+    private func makeLocalImageDataLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
+        return localImageLoader
+            .loadImageDataPublisher(from: url)
+            .fallback(to: {
+                self.remoteImageLoader
+                    .loadImageDataPublisher(from: url)
+                    .caching(to: self.localImageLoader, using: url)
+            })
     }
 }
 
@@ -85,9 +86,33 @@ extension FeedLoader {
     }
 }
 
+extension FeedImageDataLoader {
+    typealias Publisher = AnyPublisher<Data, Error>
+
+    func loadImageDataPublisher(from url: URL) -> Publisher {
+        var task: FeedImageDataLoaderTask?
+
+        return Deferred {
+            Future { completion in
+                task = self.loadImageData(from: url, completion: completion)
+            }
+        }
+        .handleEvents(receiveCancel: { task?.cancel() })
+        .eraseToAnyPublisher()
+    }
+}
+
 extension Publisher where Output == [FeedImage] {
     func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == Data {
+    func caching(to cache: FeedImageDataCache, using url: URL) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { data in
+            cache.saveIgnoringResult(data, for: url)
+        }).eraseToAnyPublisher()
     }
 }
 
@@ -106,6 +131,12 @@ extension Publisher {
 private extension FeedCache {
     func saveIgnoringResult(_ feed: [FeedImage]) {
         save(feed) { _ in }
+    }
+}
+
+private extension FeedImageDataCache {
+    func saveIgnoringResult(_ data: Data, for url: URL) {
+        save(data, for: url) { _ in }
     }
 }
 

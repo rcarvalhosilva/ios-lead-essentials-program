@@ -6,13 +6,16 @@ import UIKit
 final class FeedUIComposer {
     private init() {}
 
-    static func feedComposedWith(feedLoader: @escaping () -> FeedLoader.Publisher, imageLoader: FeedImageDataLoader) -> FeedViewController {
+    static func feedComposedWith(
+        feedLoader: @escaping () -> FeedLoader.Publisher,
+        imageLoader:  @escaping (URL) -> FeedImageDataLoader.Publisher
+    ) -> FeedViewController {
         let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: { feedLoader().dispatchOnMainQueue() })
         let feedController = makeFeedViewControllerWith(delegate: presentationAdapter, title: FeedPresenter.title)
         let presenter = FeedPresenter(
             feedView: FeedViewAdapter(
                 controller: feedController,
-                imageLoader: MainQueueDispatchDecorator(imageLoader)
+                imageLoader: { imageLoader($0).dispatchOnMainQueue() }
             ),
             loadingView: WeakRefVirtualProxy(feedController),
             errorView: WeakRefVirtualProxy(feedController)
